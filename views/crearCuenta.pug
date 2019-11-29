@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+html(lang="en")
+   head
+      include partials/header
+   body.login
+
+      .contenedor-formulario
+         h1 Crea tu cuenta en Uptask
+
+         //- pre= vardump(errores)
+
+         if locals.mensajes
+            .alertas 
+               each categoria in Object.keys(locals.mensajes)
+                  each error in mensajes[categoria]
+                     .alerta(class=`${categoria}`)
+                        p= error               
+
+         form(action="/crear-cuenta" method="POST" id="formulario" class="caja caja-login" )
+            .campo
+               label(for="email") E-mail:
+               input(type="email" name="email" placeholder="Tu Email" value= email)
+            .campo
+               label(for="password") Password:
+               input(type="password" name="password" placeholder="Tu Pasword" value= password)
+            .campo.enviar
+               input(type="submit" class="boton" value="Crear Cuenta")
+            .campo
+               a(href="/iniciar-sesion") Volver a Iniciar Sesión
+
+      //- script(src="/dist/bundle.js")
